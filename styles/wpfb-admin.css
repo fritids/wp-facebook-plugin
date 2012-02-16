@@ -1,0 +1,41 @@
+dt{
+	float:left;
+	width:150px;
+}
+label{
+	font-weight: normal;
+	margin-top: 5px;
+	display: block;
+}
+fieldset{
+	display: block;
+	margin-bottom: 1em;
+	border: 1px solid #eee;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	padding: 20px;
+	margin-bottom: 20px;
+}
+legend{
+	font-weight: bold;
+	font-size: 1.1em;
+	padding: 4px 12px;
+}
+form,
+#buy-themes{
+	border: 1px solid #E3E3E3;
+	background-color: white;
+	padding: 20px;
+	width: 680px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	margin-bottom: 20px;
+}
+#buy-themes iframe{
+	margin: 0;
+	width: 660px;
+	background: transparent;
+	height: 807px;
+}

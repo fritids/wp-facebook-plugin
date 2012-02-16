@@ -1,0 +1,279 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Facebook\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-06-19 09:09-0600\n"
+"PO-Revision-Date: 2010-06-19 11:28-0600\n"
+"Last-Translator: Chris Wallace <chris@liftux.com>\n"
+"Language-Team: UpThemes <support@upthemes.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: C:\\Users\\Christopher\\Documents\\plugins\\wp-facebook\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: UNITED STATES\n"
+"X-Poedit-SearchPath-0: C:\\Users\\Christopher\\Documents\\plugins\\wp-facebook\n"
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/wp-facebook.php:133
+msgid "Options saved."
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/wp-facebook.php:137
+msgid "Invalid Application ID/Secret:"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/wp-facebook.php:157
+msgid "WP Facebook Settings"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/wp-facebook.php:160
+msgid "To use Facebook OAuth you will first need to setup a Facebook Application:"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/wp-facebook.php:162
+msgid "Visit the Facebook application registration page"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/wp-facebook.php:163
+msgid "Copy the displayed Application ID and Secret into this form."
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/wp-facebook.php:169
+msgid "Application ID:"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/wp-facebook.php:171
+msgid "Application Secret:"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/wp-facebook.php:175
+msgid "Comment Settings"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/wp-facebook.php:176
+msgid "Facebook comments?"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/wp-facebook.php:178
+msgid "None"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/wp-facebook.php:179
+msgid "Replace WordPress comments"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/wp-facebook.php:180
+msgid "Add Facebook comments below WordPress comments"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/wp-facebook.php:182
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-activity-feed-widget.php:178
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-comments-widget.php:130
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-facepile-widget.php:116
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-like-button-widget.php:148
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-livestream-widget.php:133
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-login-with-faces-widget.php:129
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-recommendations-widget.php:143
+msgid "Width:"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/wp-facebook.php:184
+msgid "Comments to Show:"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/wp-facebook.php:187
+msgid "Save Changes"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/wp-facebook.php:191
+msgid "Buy a WordPress Theme from UpThemes"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/wp-facebook.php:530
+msgid "Post comment to Facebook?"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/wp-facebook.php:557
+msgid "commented on:"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/wpfb-comment-template.php:15
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-comments-widget.php:39
+msgid "Facebook Comments"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-activity-feed-widget.php:33
+msgid "A widget that displays a Facebook activity feed."
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-activity-feed-widget.php:39
+msgid "Facebook Activity Feed"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-activity-feed-widget.php:146
+msgid "Recent Activity"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-activity-feed-widget.php:151
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-comments-widget.php:124
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-facepile-widget.php:111
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-like-button-widget.php:134
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-livestream-widget.php:121
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-login-with-faces-widget.php:124
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-recommendations-widget.php:131
+msgid "Title (leave blank for none):"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-activity-feed-widget.php:157
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-recommendations-widget.php:137
+msgid "Domain:"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-activity-feed-widget.php:164
+msgid "Show header?"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-activity-feed-widget.php:169
+msgid "Color scheme:"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-activity-feed-widget.php:171
+msgid "Light"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-activity-feed-widget.php:172
+msgid "Dark"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-activity-feed-widget.php:184
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-livestream-widget.php:127
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-recommendations-widget.php:149
+msgid "Height:"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-activity-feed-widget.php:190
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-like-button-widget.php:169
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-recommendations-widget.php:161
+msgid "Font:"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-activity-feed-widget.php:204
+msgid "Show recommendations?"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-activity-feed-widget.php:209
+msgid "Border color:"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-comments-widget.php:33
+msgid "A widget that displays the Facebook comment form."
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-comments-widget.php:119
+msgid "Comments from Facebook"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-comments-widget.php:136
+msgid "Number of Comments:"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-facepile-widget.php:33
+msgid "Facebook facepile widget."
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-facepile-widget.php:39
+msgid "Facebook Facepile"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-facepile-widget.php:106
+msgid "Your Facebook Friends on"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-facepile-widget.php:122
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-login-with-faces-widget.php:141
+msgid "Max Rows:"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-like-button-widget.php:33
+msgid "A widget that displays the Facebook Like button."
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-like-button-widget.php:39
+msgid "Facebook Like Button"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-like-button-widget.php:129
+msgid "Like This?"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-like-button-widget.php:140
+msgid "Layout Style:"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-like-button-widget.php:143
+msgid "Button Count"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-like-button-widget.php:154
+msgid "Verb to Display:"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-like-button-widget.php:156
+msgid "Like"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-like-button-widget.php:157
+msgid "Recommend"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-like-button-widget.php:164
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-login-with-faces-widget.php:136
+msgid "Show faces?"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-livestream-widget.php:33
+msgid "A widget that displays a Facebook live stream."
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-livestream-widget.php:39
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-livestream-widget.php:116
+msgid "Facebook Live Stream"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-livestream-widget.php:139
+msgid "XID (unique id for multiple live streams on one page):"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-login-with-faces-widget.php:33
+msgid "A widget that displays a Facebook login with faces box."
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-login-with-faces-widget.php:39
+msgid "Facebook Login with Faces"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-login-with-faces-widget.php:119
+msgid "Login with Facebook"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-recommendations-widget.php:33
+msgid "A widget that displays the Facebook recommendations box."
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-recommendations-widget.php:39
+msgid "Facebook Recommendations"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-recommendations-widget.php:126
+msgid "Recommendations for"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-recommendations-widget.php:156
+msgid "Show Header?"
+msgstr ""
+
+#: C:\Users\Christopher\Documents\plugins\wp-facebook/widgets/fb-recommendations-widget.php:174
+msgid "Border Color:"
+msgstr ""
+
