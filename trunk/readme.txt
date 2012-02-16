@@ -1,4 +1,12 @@
-== WP Facebook ==
+=== WP Facebook ===
+Contributors: chriswallace, misternifty
+Author: Chris Wallace
+Author URI: http://upthemes.com/
+Plugin URI: http://upthemes.com/plugins/wp-facebook
+Tags: facebook, opengraph, social widgets, login
+Requires at least: 2.5
+Tested up to: 3.3
+Stable tag: 0.3.5
 
 WP Facebook offers a number of features surrounding the Facebook OpenGraph, social widgets, and more.
 
