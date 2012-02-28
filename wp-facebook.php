@@ -6,6 +6,7 @@ Version: 0.4.2
 Author: UpThemes
 Plugin URI: http://upthemes.com/plugins/wp-facebook/
 Author URI: http://upthemes.com
+Stable Version: 0.4.2
 */
 
 /**
