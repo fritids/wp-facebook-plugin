@@ -6,7 +6,7 @@ Plugin URI: http://upthemes.com/plugins/wp-facebook
 Tags: facebook, opengraph, social widgets, login
 Requires at least: 2.5
 Tested up to: 3.3
-Stable tag: 0.3.6
+Stable tag: 0.4.4
 
 == Description ==
 
