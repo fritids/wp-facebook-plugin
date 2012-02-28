@@ -2,11 +2,11 @@
 /*
 Plugin Name: WP Facebook
 Description: Allow users to create an account and sign in to your site with Facebook, adds your posts/pages to the Facebook Open Graph, and makes the new Facebook Social Plugins easy to use in widget form.
-Version: 0.4.4
+Version: 0.4.5
 Author: UpThemes
 Plugin URI: http://upthemes.com/plugins/wp-facebook/
 Author URI: http://upthemes.com
-Stable tag: 0.4.4
+Stable tag: 0.4.5
 */
 
 /**
@@ -586,7 +586,8 @@ function wpfb_user_logged_in(){
 
 	global $fbOauth_facebook;
 
-	$user = $fbOauth_facebook->getUser();
+	if( $fbOauth_facebook )
+		$user = $fbOauth_facebook->getUser();
 
 	if( !isset($user) || !$user )
 		return;
