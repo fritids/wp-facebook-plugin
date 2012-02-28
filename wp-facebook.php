@@ -2,27 +2,39 @@
 /*
 Plugin Name: WP Facebook
 Description: Allow users to create an account and sign in to your site with Facebook, adds your posts/pages to the Facebook Open Graph, and makes the new Facebook Social Plugins easy to use in widget form.
-Version: 0.3.6
+Version: 0.4.2
 Author: UpThemes
-Author URI: http://upthemes.com/
+Plugin URI: http://upthemes.com/plugins/wp-facebook/
+Author URI: http://upthemes.com
 */
+
+/**
+ * Returns current plugin version.
+ *
+ * @return string Plugin version
+ */
+function plugin_get_version() {
+	if ( ! function_exists( 'get_plugins' ) )
+		require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+	$plugin_folder = get_plugins( '/' . plugin_basename( dirname( __FILE__ ) ) );
+	$plugin_file = basename( ( __FILE__ ) );
+	return $plugin_folder[$plugin_file]['Version'];
+}
 
 /**
  *  Load Translations
  */
 load_plugin_textdomain( 'wpfb', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 
-$root = dirname(dirname(dirname(dirname(__FILE__))));
-require_once($root . '/wp-includes/registration.php');
-
 define('FBOAUTH_APP_ID', 'fbOauth_app_id');
 define('FBOAUTH_APP_SECRET', 'fbOauth_app_secret');
+define('WPFB_VERSION', plugin_get_version());
 
 fbOauth_init();
 
 function fbOauth_init() {
 	
-	add_theme_support('post-thumbnails');
+  add_theme_support('post-thumbnails');
 	
   /**
    *  Install the admin menu.
@@ -41,7 +53,7 @@ function fbOauth_init() {
 			add_action('admin_notices','wpfb_not_configured_message');
       return;
   }
-
+  
   /**
    * Gimme those widgets!
    */
@@ -54,8 +66,8 @@ function fbOauth_init() {
 	include_once('widgets/fb-activity-feed-widget.php');
 
   /**
-   * Add the xmlns:fb namespace to the page.  This is necessary  necessary for
-   *   xfbml to work in IE.
+   * Add the xmlns:fb namespace to the page.  This is necessary for
+   * xfbml to work in IE.
    */
   add_filter('language_attributes', 'fbOauth_language_attributes');
 
@@ -64,7 +76,6 @@ function fbOauth_init() {
    */
   add_action('wp_head', 'fbOauth_header');
   add_action('login_head', 'fbOauth_header');
-  add_action('login_head','check_login_form');
 
   /**
    * Add action to display login button
@@ -86,45 +97,60 @@ function fbOauth_init() {
   /**
    * Init the plugin for users
    */
-  add_action('init', 'fbOauth_init_auth', 20);
+  add_action('after_setup_theme', 'fbOauth_init_auth', 1);
   		
 	/**
 	 * Determine whether to use/add Facebook commenting to posts
 	 */
-		
-	add_action('init','wpfb_comments');
+  add_action('init','wpfb_comments');
 
+  /**
+   * Load the jQuery!!
+   */
+  add_action('init','wpfb_start_jquery');
+
+	/**
+		* Load login styles for Facebook button
+		*/
+	add_action('login_head','wpfb_login_styles');
+
+}
+
+function wpfb_start_jquery(){
+
+	wp_enqueue_script('jquery');
+
+}
+
+function wpfb_login_styles(){
+	
+	wp_enqueue_style('wpfb-login-styles', plugins_url( 'styles/wp-login.css', __FILE__ ), false, WPFB_VERSION );
+	
 }
 
 function wpfb_not_configured_message(){
 
-	fbOauth_message(__("WP Facebook has been activated and <a href='options-general.php?page=wp-facebook/wp-facebook.php'>needs to be configured</a> in order to work properly.",'wpfb'));
+	fbOauth_message(__("WP Facebook has been activated and <a href='options-general.php?page=" . plugin_basename(dirname(__FILE__)) . "/wp-facebook.php'>needs to be configured</a> in order to work properly.",'wpfb'));
 
 }
 
 function fbOauth_admin_menu() {
-    if (!function_exists('add_options_page')) {
+    if (!function_exists('add_options_page'))
         return;
-    }
 
-    add_options_page('WP-Facebook',
-                     'WP-Facebook',
-                     8,
+    $wpfb = add_options_page('WP Facebook',
+                     'WP Facebook',
+                     'manage_options',
                      __FILE__,
                      'fbOauth_admin_options');
-}
 
-function admin_styles(){
-
-	if(is_admin() && $_REQUEST['page'] == 'wp-facebook/wp-facebook.php'){
-		wp_enqueue_style('wpfb-admin',get_bloginfo('wpurl') . '/wp-content/plugins/wp-facebook/styles/wpfb-admin.css');	
-	}
+	add_action( 'admin_print_styles-' . $wpfb, 'wpfb_admin_styles');
 
 }
 
-if($_REQUEST['page'] == 'wp-facebook/wp-facebook.php')
-  add_action('init','admin_styles');
-
+function wpfb_admin_styles(){
+	wp_enqueue_style('wpfb-admin', plugins_url( 'styles/wpfb-admin.css', __FILE__ ), false, WPFB_VERSION );	
+}
 
 function fbOauth_admin_options() {
 	
@@ -198,7 +224,7 @@ echo '<label for="'.$FBOAUTH_APP_ID.'">' . __('Application ID:','wpfb') . '</lab
 <div class="clear"></div>
 </form>';
 
-echo '<div id="buy-themes"><h2>' . __('Buy a WordPress Theme from UpThemes','wpfb') . '</h2><iframe src="http://upthemes.com/buy-themes/" frameborder="0"></iframe></div>';
+echo '<div class="credits"><h2>' . __('Brought to you by the folks at <a href="http://upthemes.com">UpThemes</a>','wpfb') . '</div>';
 
 }
 
@@ -252,25 +278,26 @@ function fbOauth_language_attributes($output) {
 function fbOauth_init_auth() {
     require_once 'facebook.php';
 
-    global $fbOauth_facebook, $facebook_session;
+    global $fbOauth_facebook;
 
     $fbOauth_facebook = new Facebook(array(
         'appId'  => get_option(FBOAUTH_APP_ID),
         'secret' => get_option(FBOAUTH_APP_SECRET),
         'cookie' => true));
 
-    $facebook_session = $fbOauth_facebook->getSession();
+	$user = wpfb_user_logged_in();
 
-    if ($facebook_session) {
-        try {
-            $user = $fbOauth_facebook->api('/me');
-            fbOauth_sync_auth();
-            add_action('comment_post', 'fbOauth_comment_post');
-        } catch (Exception $e) {
-            $fbOauth_facebook->setSession();
-            $facebook_session = null;
-        }
-    }
+	if ( isset( $user ) ) {
+		// proceed knowing you have a logged in user who's authenticated
+		try {
+		    $user = $fbOauth_facebook->api('/me');
+		    fbOauth_sync_auth();
+		    add_action('comment_post', 'fbOauth_comment_post');
+		} catch (Exception $e) {
+		    $fbOauth_facebook->destroySession();
+		}
+	
+	}
 
     fbOauth_init_javascript_sdk();
 
@@ -279,14 +306,18 @@ function fbOauth_init_auth() {
 
 function fbOauth_init_javascript_sdk() {
 	
-    global $facebook_session;
+	$user = wpfb_user_logged_in();
+   
+    $app_id = get_option( FBOAUTH_APP_ID );
+	$redirect = wp_logout_url( get_bloginfo('url') );
+	$wpurl = get_bloginfo('url');
+	$channel_url = plugins_url('channel.php',__FILE__);
+	$fb_logout_redirect = $wpurl . $_SERVER['REQUEST_URI'];
 
-    $app_id     = get_option(FBOAUTH_APP_ID);
-		
-	if(FB_LOGIN_FORM==true)
-		$location = '"' . get_bloginfo('wpurl') . '"';
+	if( in_array( $GLOBALS['pagenow'], array( 'wp-login.php', 'wp-register.php' ) ) && !$user )
+		$location = '"' . get_bloginfo('url') . '"';
 	else
-		$location = window.location;
+		$location = "document.location";
 
     $fb_login = <<<EOF
   FB.Event.subscribe('auth.login', function(response) {
@@ -294,37 +325,53 @@ function fbOauth_init_javascript_sdk() {
   });
 EOF;
 
-	$redirect = wp_logout_url( get_bloginfo('wpurl') );
-
-	$wpurl = get_bloginfo('wpurl');
-	
-	$fb_logout_redirect = $wpurl . $_SERVER['REQUEST_URI'];
-
   $fb_logout = <<<EOF
-	jQuery("a[href*=logout]").live("click",function(e){
+	jQuery('a[href*="logout"]').live("click",function(e){
+		
 		e.preventDefault();
-	
+
 		FB.logout(function(response) {
 			if(response.success)
-				window.location = '$fb_logout_redirect';
+				window.location = $(this).attr('href');
+			else
+				window.location = window.location;
 		});
 	
 	});
 EOF;
 
-	if($facebook_session && is_user_logged_in())
+	if( $user && is_user_logged_in() )
 		$fb_login = $fb_logout;
 	
     $data = <<<EOF
 <div id="fb-root"></div>
-<script src="http://connect.facebook.net/en_US/all.js"></script>
 <script>
-  FB.init({appId: '{$app_id}', status: true, cookie: true, xfbml: true});
-  {$fb_login}  
+window.fbAsyncInit = function() {
+	FB.init({
+		appId		: '{$app_id}',
+		channelUrl	: '{$channel_url}',
+		status		: true,
+		cookie		: true,
+		xfbml		: true
+	});
+	{$fb_login}  
+	// Additional initialization code here
+};
 </script>
+<script>
+// Load the SDK Asynchronously
+(function(d){
+   var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+   if (d.getElementById(id)) {return;}
+   js = d.createElement('script'); js.id = id; js.async = true;
+   js.src = "//connect.facebook.net/en_US/all.js";
+   ref.parentNode.insertBefore(js, ref);
+ }(document));
+ </script>
 EOF;
 
     _fbOauth_footer_register($data, true);
+
 }
 
 function fbOauth_header() {
@@ -342,6 +389,8 @@ function fbOauth_header() {
 		$type = 'article';
 	elseif(is_front_page() || is_home() || is_page()):
 		$type = 'blog';
+	else:
+		$type = 'page';
 	endif;
 	
 	$type = apply_filters('facebook_og_type',$type);
@@ -354,7 +403,7 @@ function fbOauth_header() {
         <meta property="og:title" content="<?php wp_title() ?>" />
     <?php endif; ?>
     
-	<?php if(is_single() || is_page() || is_category() || is_tag() || is_archive() || is_attachment): ?>
+	<?php if( is_single() || is_page() || is_category() || is_tag() || is_archive() || is_attachment() ): ?>
         <meta property="og:url" content="<?php the_permalink() ?>"/>
         <?php if(has_post_thumbnail($post->ID)): ?>
         	<meta property="og:image" content="<?php echo wpfb_get_the_post_thumbnail_src($post->ID) ?>" />
@@ -393,38 +442,41 @@ function _fbOauth_flush_footer_data() {
 }
 
 function fbOauth_login_button() {
-    global $facebook_session;
 
-    if (!$facebook_session && !is_user_logged_in()) {
-		echo "<fb:login-button perms='email,publish_stream'></fb:login-button>";
+    $user = wpfb_user_logged_in();
+	
+    if (!$user && !is_user_logged_in()) {
+		echo '<div class="fb-login-button" data-show-faces="false" data-width="200" data-max-rows="1"  scope="email,publish_stream"></div>';
     }
 }
 
-function fbOauth_sync_auth() {
-    global $fbOauth_facebook;
+add_action('init','fbOauth_sync_auth');
 
+function fbOauth_sync_auth() {
+    
     try {
-        $fbuid = $fbOauth_facebook->getUser();
+        $fbuid = wpfb_user_logged_in();
     } catch (Exception $e) {}
 
     $assoc_fbuid = 0;
     $user = wp_get_current_user();
-    if ( 0 != $user->ID ) {
-        $assoc_fbuid = get_usermeta($user->ID, 'fbuid');
-    }
 
+    if ( 0 != $user->ID ) {
+        $assoc_fbuid = get_user_meta($user->ID, 'fbuid',true);
+    }
+    
     if ($assoc_fbuid) {
         if ($fbuid == $assoc_fbuid) {
             // user is already logged in to both
             return;
         } else {
-            //wp session, no fbsession = logout of wp and reload page
-            // or, user is logged in under a different fb account
+            //wp session, no fbsession = logout of wp and reload page or, user is logged in under a different fb account
             wp_logout();
             header('Location: ' . $_SERVER['REQUEST_URI']);
             exit();
         }
     } else {
+
         if ($user->ID) {
             // wpuser not associated w/ fb.  do nothing
             return;
@@ -444,10 +496,9 @@ function fbOauth_sync_auth() {
 }
 
 function fbOauth_login($allow_link=false) {
-    global $fbOauth_facebook;
 
     try {
-        $fbuid = $fbOauth_facebook->getUser();
+        $fbuid = wpfb_user_logged_in();
     } catch (Exception $e) {}
 
     if ($fbuid) {
@@ -493,7 +544,7 @@ function fbOauth_create_user($fbuid) {
     global $fbOauth_facebook;
 
     try {
-        $fbuid = $fbOauth_facebook->getUser();
+        $fbuid = wpfb_user_logged_in();
         $userinfo = $fbOauth_facebook->api('/me');
     } catch (Exception $e) {
         return 0;
@@ -530,11 +581,22 @@ function fbOauth_fb_to_wp($userinfo) {
     );
 }
 
-function fb_post_this_field(){
+function wpfb_user_logged_in(){
 
-	global $facebook_session;
+	global $fbOauth_facebook;
+
+	$user = $fbOauth_facebook->getUser();
+
+	if( !isset($user) || !$user )
+		return;
 	
-	if($facebook_session):
+	return $user;
+		
+}
+
+function fb_post_this_field(){
+	
+	if( wpfb_user_logged_in() ):
 		echo '<fieldset class="fb_post_this"><input id="fb_post_this" name="fb_post_this" type="checkbox"/> <label for="fb_post_this">' . __('Post comment to Facebook?','wpfb') . '</label></fieldset>';
 	endif;
 
@@ -568,10 +630,6 @@ function fbOauth_comment_post($comment_ID) {
     }
 }
 
-function check_login_form(){
-	define('FB_LOGIN_FORM',true);	
-}
-
 function wpfb_comments(){
 	
 	$add_comments = get_option('fboauth_add_comments');
@@ -583,7 +641,7 @@ function wpfb_comments(){
 
 	elseif($comment_option == 'add_comments'):
 		
-		add_action('comment_template','wpfb_comments_template');
+		add_action('comments_template','wpfb_comments_template');
 
 	endif;
 	
@@ -595,7 +653,14 @@ function wpfb_comments_template( $file ) {
 		return $file;
 	
 	update_option( "wpfb_comment_template_file", $file );
-	return dirname( __FILE__ ) . '/wpfb-comment-template.php';
+
+	$comments_template_path = dirname(__FILE__) . '/wpfb-comment-template.php';
+	
+	if( file_exists( dirname(__FILE__) . '/wpfb-comment-template.php') )
+		return $comments_template_path;
+	else
+		return $file;
+
 }
 
 // Get Post Thumbnail Source

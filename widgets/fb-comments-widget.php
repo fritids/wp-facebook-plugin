@@ -47,17 +47,6 @@ class FB_Comments_Widget extends WP_Widget {
 
 		/* Our variables from the widget settings. */
 		$title = apply_filters('widget_title', $instance['title'] );
-		
-		if(is_single() || is_page()):
-			
-			global $post;
-			$uid = get_the_permalink();
-			
-		else:
-
-			$uid = $instance['uid'];
-
-		endif;
 
 		$numposts = $instance['numposts'];
 		$width = $instance['width'];
@@ -72,6 +61,8 @@ class FB_Comments_Widget extends WP_Widget {
 		$comments_open = '<div class="comments_wrap">';
 				
 		$fbml = "<fb:comments ";
+		
+		$fbml .= 'data-href="' . get_permalink() . '" ';
 
 		/* If number of comments was set, set limit. */
 		if ( $numposts )

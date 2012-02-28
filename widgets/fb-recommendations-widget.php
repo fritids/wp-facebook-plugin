@@ -185,13 +185,6 @@ class FB_recommendations_Widget extends WP_Widget {
 	}
 }
 
-		$instance['domain'] = strip_tags( $new_instance['domain'] );
-		$instance['width'] = strip_tags( $new_instance['width'] );
-		$instance['height'] = strip_tags( $new_instance['height'] );
-		$instance['header'] = $new_instance['header'];
-		$instance['font'] = $new_instance['font'];
-		$instance['border_color'] = strip_tags( $new_instance['border_color'] );
-
 function show_fb_recommendations($atts){
 
 	extract(shortcode_atts(array(

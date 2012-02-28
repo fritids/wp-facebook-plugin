@@ -14,6 +14,6 @@ $width	  = get_option('fboauth_comments_width');
 
 	<h3><?php _e('Facebook Comments','wpfb'); ?></h3>
 
-	<fb:comments id="<?php echo get_the_ID() ?>" numposts="<?php if($numposts) echo $numposts; else echo '10'; ?>" width="<?php if($width) echo $width; else echo '500'; ?>" />
+	<fb:comments id="<?php echo get_the_ID() ?>" data-href="<?php the_permalink(); ?>" numposts="<?php if($numposts) echo $numposts; else echo '10'; ?>" width="<?php if($width) echo $width; else echo '500'; ?>" />
 
 </div>
