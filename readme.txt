@@ -1,5 +1,5 @@
 === WP Facebook ===
-Contributors: chriswallace, misternifty
+Contributors: chriswallace
 Author: Chris Wallace
 Author URI: http://upthemes.com/
 Plugin URI: http://upthemes.com/plugins/wp-facebook
